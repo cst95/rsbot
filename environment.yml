@@ -1,0 +1,32 @@
+name: rsbot
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - ca-certificates=2019.1.23=0
+  - certifi=2019.3.9=py37_0
+  - freetype=2.10.0=h5db478b_0
+  - jpeg=9c=hfa6e2cd_1001
+  - libpng=1.6.36=h7602738_1000
+  - libtiff=4.0.10=h36446d0_1001
+  - olefile=0.46=py_0
+  - openssl=1.1.1b=he774522_1
+  - pillow=5.4.1=py37hdc69c19_0
+  - pip=19.0.3=py37_0
+  - pyautogui=0.9.42=py37_0
+  - pymsgbox=1.0.6=py_0
+  - pyscreeze=0.1.19=py_0
+  - python=3.7.2=h8c8aaf0_10
+  - pytweening=1.0.3=py_0
+  - pywin32=223=py37hfa6e2cd_1
+  - setuptools=40.8.0=py37_0
+  - sqlite=3.27.2=he774522_0
+  - tk=8.6.9=hfa6e2cd_1000
+  - vc=14.1=h21ff451_3
+  - vs2015_runtime=15.5.2=3
+  - wheel=0.33.1=py37_0
+  - wincertstore=0.2=py37_0
+  - zlib=1.2.11=h2fa13f4_1004
+prefix: C:\Anaconda3\envs\rsbot
+
