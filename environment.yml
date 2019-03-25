@@ -4,14 +4,15 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - ca-certificates=2019.1.23=0
+  - ca-certificates=2019.3.9=hecc5488_0
   - certifi=2019.3.9=py37_0
+  - comtypes=1.1.7=py37_1000
   - freetype=2.10.0=h5db478b_0
   - jpeg=9c=hfa6e2cd_1001
   - libpng=1.6.36=h7602738_1000
   - libtiff=4.0.10=h36446d0_1001
   - olefile=0.46=py_0
-  - openssl=1.1.1b=he774522_1
+  - openssl=1.1.1b=hfa6e2cd_2
   - pillow=5.4.1=py37hdc69c19_0
   - pip=19.0.3=py37_0
   - pyautogui=0.9.42=py37_0
@@ -20,7 +21,9 @@ dependencies:
   - python=3.7.2=h8c8aaf0_10
   - pytweening=1.0.3=py_0
   - pywin32=223=py37hfa6e2cd_1
+  - pywinauto=0.6.6=py37_0
   - setuptools=40.8.0=py37_0
+  - six=1.12.0=py37_1000
   - sqlite=3.27.2=he774522_0
   - tk=8.6.9=hfa6e2cd_1000
   - vc=14.1=h21ff451_3

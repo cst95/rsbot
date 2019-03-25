@@ -1,48 +1,13 @@
-import pyautogui
-import win32gui
-
-
-#print(pyautogui.position())
-#print("Hello")
-
-#print(pyautogui.size())
-
-
-#max_x = pyautogui.size().width
-#max_y = pyautogui.size().height
-
-#print(max_x)
-
-
-#pag.moveTo(max_x, max_y, 10)
-#print(pyautogui.screenshot('test.pngn))
-
-def callback(hwnd, extra):
-	print(win32gui.GetWindowText(hwnd))
-
-	print(win32gui.GetWindowRect(hwnd))
-
-
-def find_window_coords(username):
-	window_name = f'RuneLite - {username}'
-	try:
-		window_id = win32gui.FindWindow(None, window_name)
-	except:
-		print('')
-		return None
-
-	return win32gui.GetWindowRect(window_id)
-
-
+from window import Window
+from cursor import Cursor
 
 
 def main():
-	username = 'RumbIe'
-	print(find_window_coords(username))
-
-    
-
-
+    runelite = Window('RumbIe')
+    runelite.focus()
+    runelite.resize(x=100,y=100,w=800,h=500, absolute=True)
+    cursor = Cursor()
+    cursor.moveTo(*runelite.mid_point)
 
 if __name__ == '__main__':
     main()
