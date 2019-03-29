@@ -1,10 +1,10 @@
+import sys
+sys.path.insert(0, './scripts')
+
 from window import Window
-import numpy as np
-import cv2
 from cursor import Cursor
-from PIL import ImageGrab
 from object_detector import ObjectDetector
-import json
+from ore_miner_script import OreMinerScript
 
 
 def main():
@@ -12,16 +12,18 @@ def main():
     runelite.focus()
     runelite.resize(x=0,y=0,w=1000,h=700, absolute=True)
     cursor = Cursor()
-    
-    with open('miningConfig.json') as json_file:
-        config = json.load(json_file)
-        lower = config['iron']['bgr']['lower']
-        upper = config['iron']['bgr']['upper']
+    script = OreMinerScript('iron', runelite, cursor, 3)
 
-    image = np.array(ImageGrab.grab(runelite.bbox))
-    ObjectDetector.inColourRange(lower,upper,image)
-
+    while True:
+        script.botting_loop()
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Interrupted')
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)

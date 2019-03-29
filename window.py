@@ -7,6 +7,11 @@ import pyautogui
 # inherit from this class?
 
 class Window():
+    def __init__(self, username):
+        self.name = f'RuneLite - {username}'
+        self.hWnd = self.get_hWnd()
+        self.get_geometry()
+
     def focus(self):
         win32gui.SetForegroundWindow(find_window(title=self.name))
 
@@ -28,18 +33,11 @@ class Window():
         self.bottom_right = (x + w, y + h)
         self.width = w
         self.height = h
-        self.mid_point = (x + w / 2, y + h / 2)
         self.bbox = window[0], window[1], window[2] - 50, window[3] - 50
+        self.mid_point = (self.bbox[0] + self.bbox[2] / 2, self.bbox[1] + self.bbox[3] / 2)
 
     def resize(self, x=0, y=0, w=100, h=100, absolute=False):
         if absolute:
             win32gui.MoveWindow(self.hWnd, x, y, w, h, True)
         else:
             win32gui.MoveWindow(self.hWnd, x, y, self.width + w, self.height + h, True)
-
-
-    def __init__(self, username):
-        self.name = f'RuneLite - {username}'
-        self.hWnd = self.get_hWnd()
-        self.get_geometry()
-
