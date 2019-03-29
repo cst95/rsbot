@@ -29,7 +29,7 @@ class Window():
         self.width = w
         self.height = h
         self.mid_point = (x + w / 2, y + h / 2)
-        self.bbox = window
+        self.bbox = window[0], window[1], window[2] - 50, window[3] - 50
 
     def resize(self, x=0, y=0, w=100, h=100, absolute=False):
         if absolute:

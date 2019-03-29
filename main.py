@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from cursor import Cursor
 from PIL import ImageGrab
-from object_finder import ObjectDetector
+from object_detector import ObjectDetector
 import json
 
 
@@ -19,7 +19,7 @@ def main():
         upper = config['iron']['bgr']['upper']
 
     image = np.array(ImageGrab.grab(runelite.bbox))
-    ColourObjectFinder.inColourRange(lower,upper,image)
+    ObjectDetector.inColourRange(lower,upper,image)
 
 
 
