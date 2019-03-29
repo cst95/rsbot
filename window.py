@@ -31,13 +31,11 @@ class Window():
         self.mid_point = (x + w / 2, y + h / 2)
         self.bbox = window
 
-
     def resize(self, x=0, y=0, w=100, h=100, absolute=False):
         if absolute:
             win32gui.MoveWindow(self.hWnd, x, y, w, h, True)
         else:
             win32gui.MoveWindow(self.hWnd, x, y, self.width + w, self.height + h, True)
-
 
 
     def __init__(self, username):
