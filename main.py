@@ -2,7 +2,7 @@ import sys
 sys.path.insert(0, './scripts')
 
 from window import Window
-from cursor import Cursor
+from controller import Controller
 from object_detector import ObjectDetector
 from ore_miner_script import OreMinerScript
 
@@ -10,9 +10,9 @@ from ore_miner_script import OreMinerScript
 def main():
     runelite = Window('RumbIe')
     runelite.focus()
-    runelite.resize(x=0,y=0,w=1000,h=700, absolute=True)
-    cursor = Cursor()
-    script = OreMinerScript('iron', runelite, cursor, 4)
+    runelite.resize(x=0,y=0,w=1000,h=700,absolute=True)
+    controller = Controller()
+    script = OreMinerScript('iron',runelite,controller,4,debug=True)
 
     while True:
         script.botting_loop()

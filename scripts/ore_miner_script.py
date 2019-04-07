@@ -5,18 +5,29 @@ from camera import Camera
 import numpy as np
 
 class OreMinerScript():
-    def __init__(self, ore, window, cursor, numberOfRocks):
+    def __init__(self, ore, window, controller, numberOfRocks, debug=False):
         self.window = window
-        self.cursor = cursor
+        self.controller = controller
         self.setOreColourBounds(ore)
         self.setNumberOfRocks(numberOfRocks)
+        self.debug = debug
 
     def botting_loop(self):
         while True:
-            image = Camera.screenshot(self.window.bbox)
-            rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, debug=True)
-            
-            print(f'I found {len(rocks)} rocks in {end - start} seconds')
+            #is the last mouse click still inside a box?
+
+            #Take a screenshot of the runelite window
+            image = Camera.screenshot(self.window.bbox.bbox)
+
+            #Detect the nearest n rocks
+            rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
+            print(f'I found {len(rocks)} rocks')
+
+
+            #move mouse to box of the first rock and click
+
+
+
 
 
     def setOreColourBounds(self, ore):
