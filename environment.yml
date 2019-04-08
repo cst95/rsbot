@@ -1,12 +1,12 @@
 name: rsbot
 channels:
-  - anaconda
   - jmcmurray
   - conda-forge
+  - anaconda
   - defaults
 dependencies:
   - blas=1.0=mkl
-  - ca-certificates=2019.3.9=hecc5488_0
+  - ca-certificates=2019.1.23=0
   - certifi=2019.3.9=py36_0
   - comtypes=1.1.7=py36_1000
   - freetype=2.10.0=h5db478b_0
@@ -25,7 +25,7 @@ dependencies:
   - numpy-base=1.16.2=py36hc3f5095_0
   - olefile=0.46=py_0
   - opencv=3.4.2=py36h40b0b35_0
-  - openssl=1.1.1b=hfa6e2cd_2
+  - openssl=1.1.1b=he774522_1
   - pillow=5.4.1=py36hdc69c19_0
   - pip=19.0.3=py36_0
   - py-opencv=3.4.2=py36hc319ecb_0

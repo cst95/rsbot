@@ -13,21 +13,27 @@ class OreMinerScript():
         self.debug = debug
 
     def botting_loop(self):
+        isMining = True
+        lastClick = self.controller.lastClick
+
         while True:
-            #is the last mouse click still inside a box?
+            if isMining:
+                #Take a screenshot of the runelite window
+                image = Camera.screenshot(self.window.bbox.bbox)
 
-            #Take a screenshot of the runelite window
-            image = Camera.screenshot(self.window.bbox.bbox)
+                #Detect the nearest n rocks
+                rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
 
-            #Detect the nearest n rocks
-            rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
-            print(f'I found {len(rocks)} rocks')
+                print(f'I found {len(rocks)} rocks')
 
+                if len(rocks) > 0:
+                    for rock in rocks:
+                        if rock.areCoordsInside(*lastClick):
+                            isMining = False
+                            break
 
-            #move mouse to box of the first rock and click
-
-
-
+                    if not isMining:
+                        self.controller.clickInBbox(rocks[0])
 
 
     def setOreColourBounds(self, ore):

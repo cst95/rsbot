@@ -21,7 +21,6 @@ class Window():
 
     def getBbox(self):
         window = win32gui.GetWindowRect(self.hWnd)
-        print(window)
         return Bbox(window[0], window[1], window[2] - 50, window[3] - 50)
 
     def resize(self, x=0, y=0, w=100, h=100, absolute=False):

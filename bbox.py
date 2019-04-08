@@ -1,7 +1,7 @@
 from random import randint
 
 class Bbox():
-	def __init__(self, x_min, y_min, x_max, y_max):
+	def __init__(self, x_min, y_min, x_max, y_max, ):
 		self.x_min = x_min
 		self.x_max = x_max
 		self.y_min = y_min
@@ -17,7 +17,7 @@ class Bbox():
 
 	@property
 	def bbox(self):
-		return self.x_min, self.y_min, self.width, self.height
+		return self.x_min, self.y_min, self.x_max, self.y_max
 
 	def midpoint(self):
 		midpoint = calculateMidPoint()

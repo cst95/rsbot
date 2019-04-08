@@ -12,7 +12,7 @@ def main():
     runelite.focus()
     runelite.resize(x=0,y=0,w=1000,h=700,absolute=True)
     controller = Controller()
-    script = OreMinerScript('iron',runelite,controller,4,debug=True)
+    script = OreMinerScript('iron',runelite,controller,4,debug=False)
 
     while True:
         script.botting_loop()
