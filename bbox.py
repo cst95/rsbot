@@ -20,10 +20,12 @@ class Bbox():
 		return self.x_min, self.y_min, self.x_max, self.y_max
 
 	def midpoint(self):
-		midpoint = calculateMidPoint()
+		midpoint = self.calculateMidPoint()
 		return midpoint
 	
 	def areCoordsInside(self, x, y):
+		print(self.x_min,self.x_max,self.y_min,self.y_max)
+		print(x,y)
 		isInXRange = self.x_min < x < self.x_max
 		isInYRange = self.y_min < y < self.y_max
 		return isInXRange and isInYRange

@@ -46,13 +46,14 @@ class Controller():
         # for point in zip(*(i.astype(int) for i in points)):
         #     pag.moveTo(*point)
         #     time.sleep(timeout)
-        pag.moveTo(x,y,0)
+        pag.moveTo(x,y)
 
     #Click in a random position inside the bbox
     def clickInBbox(self, bbox):
-        x = randint(bbox.x_min, bbox.x_max)
-        y = randint(bbox.y_min, bbox.y_max)
+        x,y = bbox.midpoint()
         
         self.moveCursorTo(x, y)
+        time.sleep(0.4)
+
         pag.click()
         self.lastClick = (x,y)

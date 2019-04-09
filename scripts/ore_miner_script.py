@@ -12,28 +12,64 @@ class OreMinerScript():
         self.setNumberOfRocks(numberOfRocks)
         self.debug = debug
 
+    # def botting_loop(self):
+    #     isMining = True
+    #     lastClick = self.controller.lastClick
+
+    #     while True:
+    #         if isMining:
+    #             #Take a screenshot of the runelite window
+    #             image = Camera.screenshot(self.window.bbox.bbox)
+
+    #             #Detect the nearest n rocks
+    #             rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
+
+    #             print(f'I found {len(rocks)} rocks')
+
+    #             if len(rocks) > 0:
+    #                 for rock in rocks:
+    #                     if rock.areCoordsInside(*lastClick):
+    #                         isMining = False
+    #                         break
+
+    #                 if not isMining:
+    #                     self.controller.clickInBbox(rocks[0])
+
+
     def botting_loop(self):
-        isMining = True
-        lastClick = self.controller.lastClick
+        isMining = False
 
         while True:
-            if isMining:
-                #Take a screenshot of the runelite window
+
+            image = Camera.screenshot(self.window.bbox.bbox)
+            #Detect the nearest n rocks
+            rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
+            print(f'I found {len(rocks)} rocks')
+
+            if not isMining:
+                if len(rocks) > 0:
+                    self.controller.clickInBbox(rocks[0])
+                    isMining = True
+                    print('Starting Mining')
+
+            while isMining:
+                isLastClickInAvailableRocks = False
+
                 image = Camera.screenshot(self.window.bbox.bbox)
-
-                #Detect the nearest n rocks
                 rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
-
                 print(f'I found {len(rocks)} rocks')
 
                 if len(rocks) > 0:
                     for rock in rocks:
-                        if rock.areCoordsInside(*lastClick):
-                            isMining = False
+                        if rock.areCoordsInside(*self.controller.lastClick):
+                            isLastClickInAvailableRocks = True
                             break
 
-                    if not isMining:
-                        self.controller.clickInBbox(rocks[0])
+                    if not isLastClickInAvailableRocks:
+                        isMining = False
+                        print('Finishing Mining')
+
+
 
 
     def setOreColourBounds(self, ore):
