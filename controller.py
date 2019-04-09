@@ -14,7 +14,6 @@ pag.PAUSE = 0  # Default: 0.1
 class Controller():
     def __init__(self):
         self.x , self.y = pag.position()
-        self.lastClick = (0,0)
 
     def moveCursorTo(self, x, y):
         # cp = randint(3, 5)  # Number of control points. Must be at least 2.
@@ -53,7 +52,7 @@ class Controller():
         x,y = bbox.midpoint()
         
         self.moveCursorTo(x, y)
-        time.sleep(0.4)
+        time.sleep(0.5)
 
         pag.click()
-        self.lastClick = (x,y)
+        return x,y

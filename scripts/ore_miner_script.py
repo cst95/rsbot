@@ -12,62 +12,36 @@ class OreMinerScript():
         self.setNumberOfRocks(numberOfRocks)
         self.debug = debug
 
-    # def botting_loop(self):
-    #     isMining = True
-    #     lastClick = self.controller.lastClick
-
-    #     while True:
-    #         if isMining:
-    #             #Take a screenshot of the runelite window
-    #             image = Camera.screenshot(self.window.bbox.bbox)
-
-    #             #Detect the nearest n rocks
-    #             rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
-
-    #             print(f'I found {len(rocks)} rocks')
-
-    #             if len(rocks) > 0:
-    #                 for rock in rocks:
-    #                     if rock.areCoordsInside(*lastClick):
-    #                         isMining = False
-    #                         break
-
-    #                 if not isMining:
-    #                     self.controller.clickInBbox(rocks[0])
-
-
     def botting_loop(self):
-        isMining = False
 
         while True:
-
             image = Camera.screenshot(self.window.bbox.bbox)
-            #Detect the nearest n rocks
             rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
             print(f'I found {len(rocks)} rocks')
 
-            if not isMining:
-                if len(rocks) > 0:
-                    self.controller.clickInBbox(rocks[0])
-                    isMining = True
-                    print('Starting Mining')
+            if len(rocks) > 0:
+                lastClick = self.controller.clickInBbox(rocks[0])
+                time.sleep(4)
+                print('Mining')
 
-            while isMining:
-                isLastClickInAvailableRocks = False
+                while not self.hasFinishedMining(lastClick):
+                    time.sleep(0.6)
+                #Just need a way here to determine if rock is finished mining
+                print('Finished mining')
 
-                image = Camera.screenshot(self.window.bbox.bbox)
-                rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
-                print(f'I found {len(rocks)} rocks')
+    def hasFinishedMining(self, lastClick):
+        x,y = lastClick
+        image = Camera.screenshot(self.window.bbox.bbox)
+        rocks = ObjectDetector.inColourRange(image, self.lowerBound, self.upperBound, self.numberOfRocks, self.debug)
 
-                if len(rocks) > 0:
-                    for rock in rocks:
-                        if rock.areCoordsInside(*self.controller.lastClick):
-                            isLastClickInAvailableRocks = True
-                            break
+        finishedMining = False
 
-                    if not isLastClickInAvailableRocks:
-                        isMining = False
-                        print('Finishing Mining')
+        for rock in rocks:
+            if rock.areCoordsInside(x,y):
+                return finishedMining
+
+        return not finishedMining
+
 
 
 
